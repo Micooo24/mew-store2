@@ -1,21 +1,36 @@
 import styled from "styled-components";
 import { breakpoints, defaultTheme } from "./themes/default";
-
 export const Input = styled.input`
   font-size: 14px;
-  border: none;
+  border: 1px solid ${defaultTheme.color_platinum}; /* Default border */
   outline: 0;
   color: ${defaultTheme.color_dim_gray};
-
+  padding: 8px 12px;
+  border-radius: 4px;
+  
+  /* Placeholder styling */
   &::placeholder {
     color: ${defaultTheme.color_silver};
     font-weight: 400;
-
     @media (max-width: ${breakpoints.sm}) {
       font-size: 13px;
     }
   }
+
+  /* Dynamic border color based on validation status */
+  border-color: ${({ hasError, isValid }) =>
+    hasError ? '#FF0000' /* Red border for errors */ :
+    isValid ? '#00FF00' /* Green border for valid input */ :
+    defaultTheme.color_platinum /* Default border */};
+
+  /* Focused state styling */
+  &:focus {
+    border-color: ${({ hasError }) =>
+      hasError ? '#FF0000' : defaultTheme.color_sea_green};
+  }
 `;
+
+
 
 export const Textarea = styled.textarea`
   font-size: 14px;
@@ -89,9 +104,11 @@ export const FormElement = styled.div`
       }
     }
 
+    /* Error message text */
     .form-elem-error {
-      color: ${defaultTheme.color_red};
+      color: #ff0000;
       font-size: 12px;
+      margin-top: 4px;
     }
 
     .form-elem-text {
@@ -112,3 +129,4 @@ export const FormElement = styled.div`
     grid-column: span 2;
   }
 `;
+

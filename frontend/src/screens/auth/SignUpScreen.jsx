@@ -29,17 +29,6 @@ const SignUpScreenWrapper = styled.section`
   }
 `;
 
-const StyledInput = styled(Input)`
-  border: 2px solid ${({ isValid, isTouched }) => 
-    isTouched ? (isValid ? 'green' : 'red') : '#ccc'};
-  transition: border-color 0.3s ease;
-
-  &:focus {
-    outline: none;
-    border-color: ${({ isValid, isTouched }) => 
-      isTouched ? (isValid ? 'green' : 'red') : '#66afe9'};
-  }
-`;
 
 const SignUpScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -137,189 +126,210 @@ const SignUpScreen = () => {
                     <label htmlFor="username" className="forme-elem-label">
                       Username
                     </label>
-                    <StyledInput
-                      id="username"
-                      type="text"
-                      placeholder="Enter Your Username"
-                      className="form-elem-control"
-                      isValid={!formik.errors.username}
-                      isTouched={formik.touched.username}
-                      {...formik.getFieldProps("username")}
-                    />
-                    {formik.touched.username && formik.errors.username ? (
-                      <div className="form-elem-text text-danger">
-                        {formik.errors.username}
-                      </div>
-                    ) : null}
+                     <Input
+                        id="username"
+                        type="text"
+                        placeholder="Enter Your Username"
+                        className="form-elem-control"
+                        hasError={formik.touched.username && formik.errors.username}
+                        isValid={formik.touched.username && !formik.errors.username}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.username}
+                      />
+                      {formik.touched.username && formik.errors.username && (
+                        <div className="form-elem-error">
+                          {formik.errors.username}
+                        </div>
+                      )}
                   </div>
 
                   <div className="form-elem-block">
                     <label htmlFor="email" className="forme-elem-label">
                       Email
                     </label>
-                    <StyledInput
+                    <Input
                       id="email"
                       type="text"
                       placeholder="Enter Your Email"
                       className="form-elem-control"
-                      isValid={!formik.errors.email}
-                      isTouched={formik.touched.email}
-                      {...formik.getFieldProps("email")}
+                      hasError={formik.touched.email && formik.errors.email}
+                      isValid={formik.touched.email && !formik.errors.email}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.email}
                     />
-                    {formik.touched.email && formik.errors.email ? (
-                      <div className="form-elem-text text-danger">
+                    {formik.touched.email && formik.errors.email && (
+                      <div className="form-elem-error">
                         {formik.errors.email}
                       </div>
-                    ) : null}
+                    )}
                   </div>
-
                   <div className="form-elem-block">
-                    <label htmlFor="password" className="forme-elem-label">
-                      Password
-                    </label>
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                      <StyledInput
-                        id="password"
-                        type={showPassword ? "text" : "password"}
-                        placeholder="Enter your password"
-                        className="form-elem-control"
-                        isValid={!formik.errors.password}
-                        isTouched={formik.touched.password}
-                        {...formik.getFieldProps("password")}
-                      />
-                      <button
-                        type="button"
-                        onClick={togglePasswordVisibility}
-                        style={{ marginLeft: "8px" }}
-                      >
-                        {showPassword ? "Hide" : "Show"}
-                      </button>
-                    </div>
-                    {formik.touched.password && formik.errors.password ? (
-                      <div className="form-elem-text text-danger">
-                        {formik.errors.password}
-                      </div>
-                    ) : null}
-                  </div>
+  <label htmlFor="password" className="forme-elem-label">
+    Password
+  </label>
+  <div style={{ display: "flex", alignItems: "center" }}>
+    <Input
+      id="password"
+      type={showPassword ? "text" : "password"}
+      placeholder="Enter your password"
+      className={`form-elem-control ${
+        formik.touched.password && formik.errors.password
+          ? "error-input"
+          : formik.touched.password && !formik.errors.password
+          ? "success-input"
+          : ""
+      }`}
+      onChange={formik.handleChange}
+      onBlur={formik.handleBlur}
+      value={formik.values.password}
+    />
+    <button
+      type="button"
+      onClick={togglePasswordVisibility}
+      style={{ marginLeft: "8px" }}
+    >
+      {showPassword ? "Hide" : "Show"}
+    </button>
+  </div>
+  {formik.touched.password && formik.errors.password ? (
+    <div className="form-elem-error">{formik.errors.password}</div>
+  ) : null}
+</div>
 
                   <div className="form-elem-block">
                     <label htmlFor="firstName" className="forme-elem-label">
                       First Name
                     </label>
-                    <StyledInput
+                    <Input
                       id="firstName"
                       type="text"
                       placeholder="Enter Your First Name"
                       className="form-elem-control"
-                      isValid={!formik.errors.firstName}
-                      isTouched={formik.touched.firstName}
-                      {...formik.getFieldProps("firstName")}
+                      hasError={formik.touched.firstName && formik.errors.firstName}
+                      isValid={formik.touched.firstName && !formik.errors.firstName}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.firstName}
                     />
-                    {formik.touched.firstName && formik.errors.firstName ? (
-                      <div className="form-elem-text text-danger">
+                    {formik.touched.firstName && formik.errors.firstName && (
+                      <div className="form-elem-error">
                         {formik.errors.firstName}
                       </div>
-                    ) : null}
+                    )}
                   </div>
 
                   <div className="form-elem-block">
                     <label htmlFor="lastName" className="forme-elem-label">
                       Last Name
                     </label>
-                    <StyledInput
+                    <Input
                       id="lastName"
                       type="text"
                       placeholder="Enter Your Last Name"
                       className="form-elem-control"
-                      isValid={!formik.errors.lastName}
-                      isTouched={formik.touched.lastName}
-                      {...formik.getFieldProps("lastName")}
+                      hasError={formik.touched.lastName && formik.errors.lastName}
+                      isValid={formik.touched.lastName && !formik.errors.lastName}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.lastName}
                     />
-                    {formik.touched.lastName && formik.errors.lastName ? (
-                      <div className="form-elem-text text-danger">
+                    {formik.touched.lastName && formik.errors.lastName && (
+                      <div className="form-elem-error">
                         {formik.errors.lastName}
                       </div>
-                    ) : null}
+                    )}
                   </div>
 
                   <div className="form-elem-block">
                     <label htmlFor="phoneNumber" className="forme-elem-label">
                       Phone
                     </label>
-                    <StyledInput
+                    <Input
                       id="phoneNumber"
                       type="text"
                       placeholder="Enter Your Phone Number"
                       className="form-elem-control"
-                      isValid={!formik.errors.phoneNumber}
-                      isTouched={formik.touched.phoneNumber}
-                      {...formik.getFieldProps("phoneNumber")}
+                      hasError={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                      isValid={formik.touched.phoneNumber && !formik.errors.phoneNumber}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.phoneNumber}
                     />
-                    {formik.touched.phoneNumber && formik.errors.phoneNumber ? (
-                      <div className="form-elem-text text-danger">
+                    {formik.touched.phoneNumber && formik.errors.phoneNumber && (
+                      <div className="form-elem-error">
                         {formik.errors.phoneNumber}
                       </div>
-                    ) : null}
+                    )}
                   </div>
 
                   <div className="form-elem-block">
                     <label htmlFor="address" className="forme-elem-label">
                       Address
                     </label>
-                    <StyledInput
+                    <Input
                       id="address"
                       type="text"
                       placeholder="Enter Your Address"
                       className="form-elem-control"
-                      isValid={!formik.errors.address}
-                      isTouched={formik.touched.address}
-                      {...formik.getFieldProps("address")}
+                      hasError={formik.touched.address && formik.errors.address}
+                      isValid={formik.touched.address && !formik.errors.address}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.address}
                     />
-                    {formik.touched.address && formik.errors.address ? (
-                      <div className="form-elem-text text-danger">
+                    {formik.touched.address && formik.errors.address && (
+                      <div className="form-elem-error">
                         {formik.errors.address}
                       </div>
-                    ) : null}
+                    )}
                   </div>
 
                   <div className="form-elem-block">
                     <label htmlFor="zipCode" className="forme-elem-label">
                       Zip Code
                     </label>
-                    <StyledInput
+                    <Input
                       id="zipCode"
                       type="text"
                       placeholder="Enter Your Zip Code"
                       className="form-elem-control"
-                      isValid={!formik.errors.zipCode}
-                      isTouched={formik.touched.zipCode}
-                      {...formik.getFieldProps("zipCode")}
+                      hasError={formik.touched.zipCode && formik.errors.zipCode}
+                      isValid={formik.touched.zipCode && !formik.errors.zipCode}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.zipCode}
                     />
-                    {formik.touched.zipCode && formik.errors.zipCode ? (
-                      <div className="form-elem-text text-danger">
+                    {formik.touched.zipCode && formik.errors.zipCode && (
+                      <div className="form-elem-error">
                         {formik.errors.zipCode}
                       </div>
-                    ) : null}
+                    )}
                   </div>
-
                   <div className="form-elem-block">
-                    <label htmlFor="profileImage" className="forme-elem-label">
-                      Profile Image
-                    </label>
-                    <input
-                      id="profileImage"
-                      type="file"
-                      accept="image/jpeg, image/png"
-                      onChange={(event) => {
-                        formik.setFieldValue("profileImage", event.currentTarget.files[0]);
-                      }}
-                    />
-                    {formik.touched.profileImage && formik.errors.profileImage ? (
-                      <div className="form-elem-text text-danger">
-                        {formik.errors.profileImage}
-                      </div>
-                    ) : null}
-                  </div>
+  <label htmlFor="profileImage" className="forme-elem-label">
+    Profile Image
+  </label>
+  <input
+    id="profileImage"
+    type="file"
+    accept="image/jpeg, image/png"
+    className={`form-elem-control ${
+      formik.touched.profileImage && formik.errors.profileImage
+        ? "error-input"
+        : formik.touched.profileImage && !formik.errors.profileImage
+        ? "success-input"
+        : ""
+    }`}
+    onChange={(event) => {
+      formik.setFieldValue("profileImage", event.currentTarget.files[0]);
+    }}
+  />
+  {formik.touched.profileImage && formik.errors.profileImage ? (
+    <div className="form-elem-error">{formik.errors.profileImage}</div>
+  ) : null}
+</div>
 
                   <div className="form-elem-block">
                     <BaseButtonBlack type="submit" className="full-width">
