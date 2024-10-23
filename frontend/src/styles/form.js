@@ -6,7 +6,7 @@ export const Input = styled.input`
   outline: 0;
   color: ${defaultTheme.color_dim_gray};
   padding: 8px 12px;
-  border-radius: 4px;
+  border-radius: 30px; /* Rounded edges */
   
   /* Placeholder styling */
   &::placeholder {
@@ -25,8 +25,10 @@ export const Input = styled.input`
 
   /* Focused state styling */
   &:focus {
-    border-color: ${({ hasError }) =>
-      hasError ? '#FF0000' : defaultTheme.color_sea_green};
+    border-color: ${({ hasError, isValid }) =>
+      hasError ? '#FF0000' : 
+      isValid ? '#00FF00' : 
+      defaultTheme.color_sea_green};
   }
 `;
 

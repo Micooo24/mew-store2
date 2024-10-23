@@ -29,7 +29,6 @@ const SignUpScreenWrapper = styled.section`
   }
 `;
 
-
 const SignUpScreen = () => {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -126,22 +125,23 @@ const SignUpScreen = () => {
                     <label htmlFor="username" className="forme-elem-label">
                       Username
                     </label>
-                     <Input
-                        id="username"
-                        type="text"
-                        placeholder="Enter Your Username"
-                        className="form-elem-control"
-                        hasError={formik.touched.username && formik.errors.username}
-                        isValid={formik.touched.username && !formik.errors.username}
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.username}
-                      />
-                      {formik.touched.username && formik.errors.username && (
-                        <div className="form-elem-error">
-                          {formik.errors.username}
-                        </div>
-                      )}
+                    <Input
+                      id="username"
+                      type="text"
+                      placeholder="Enter Your Username"
+                      className="form-elem-control"
+                      style={{
+                        borderColor: formik.touched.username && formik.errors.username ? 'red' : formik.touched.username && !formik.errors.username ? 'green' : 'initial',
+                      }}
+                      onChange={formik.handleChange}
+                      onBlur={formik.handleBlur}
+                      value={formik.values.username}
+                    />
+                    {formik.touched.username && formik.errors.username && (
+                      <div className="form-elem-error">
+                        {formik.errors.username}
+                      </div>
+                    )}
                   </div>
 
                   <div className="form-elem-block">
@@ -153,8 +153,9 @@ const SignUpScreen = () => {
                       type="text"
                       placeholder="Enter Your Email"
                       className="form-elem-control"
-                      hasError={formik.touched.email && formik.errors.email}
-                      isValid={formik.touched.email && !formik.errors.email}
+                      style={{
+                        borderColor: formik.touched.email && formik.errors.email ? 'red' : formik.touched.email && !formik.errors.email ? 'green' : 'initial',
+                      }}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.email}
@@ -165,38 +166,38 @@ const SignUpScreen = () => {
                       </div>
                     )}
                   </div>
+
                   <div className="form-elem-block">
-  <label htmlFor="password" className="forme-elem-label">
-    Password
-  </label>
-  <div style={{ display: "flex", alignItems: "center" }}>
-    <Input
-      id="password"
-      type={showPassword ? "text" : "password"}
-      placeholder="Enter your password"
-      className={`form-elem-control ${
-        formik.touched.password && formik.errors.password
-          ? "error-input"
-          : formik.touched.password && !formik.errors.password
-          ? "success-input"
-          : ""
-      }`}
-      onChange={formik.handleChange}
-      onBlur={formik.handleBlur}
-      value={formik.values.password}
-    />
-    <button
-      type="button"
-      onClick={togglePasswordVisibility}
-      style={{ marginLeft: "8px" }}
-    >
-      {showPassword ? "Hide" : "Show"}
-    </button>
-  </div>
-  {formik.touched.password && formik.errors.password ? (
-    <div className="form-elem-error">{formik.errors.password}</div>
-  ) : null}
-</div>
+                    <label htmlFor="password" className="forme-elem-label">
+                      Password
+                    </label>
+                    <div style={{ display: "flex", alignItems: "center" }}>
+                      <Input
+                        id="password"
+                        type={showPassword ? "text" : "password"}
+                        placeholder="Enter your password"
+                        className="form-elem-control"
+                        style={{
+                          borderColor: formik.touched.password && formik.errors.password ? 'red' : formik.touched.password && !formik.errors.password ? 'green' : 'initial',
+                        }}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        value={formik.values.password}
+                      />
+                      <button
+                        type="button"
+                        onClick={togglePasswordVisibility}
+                        style={{ marginLeft: "8px" }}
+                      >
+                        {showPassword ? "Hide" : "Show"}
+                      </button>
+                    </div>
+                    {formik.touched.password && formik.errors.password && (
+                      <div className="form-elem-error">
+                        {formik.errors.password}
+                      </div>
+                    )}
+                  </div>
 
                   <div className="form-elem-block">
                     <label htmlFor="firstName" className="forme-elem-label">
@@ -207,8 +208,9 @@ const SignUpScreen = () => {
                       type="text"
                       placeholder="Enter Your First Name"
                       className="form-elem-control"
-                      hasError={formik.touched.firstName && formik.errors.firstName}
-                      isValid={formik.touched.firstName && !formik.errors.firstName}
+                      style={{
+                        borderColor: formik.touched.firstName && formik.errors.firstName ? 'red' : formik.touched.firstName && !formik.errors.firstName ? 'green' : 'initial',
+                      }}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.firstName}
@@ -229,8 +231,9 @@ const SignUpScreen = () => {
                       type="text"
                       placeholder="Enter Your Last Name"
                       className="form-elem-control"
-                      hasError={formik.touched.lastName && formik.errors.lastName}
-                      isValid={formik.touched.lastName && !formik.errors.lastName}
+                      style={{
+                        borderColor: formik.touched.lastName && formik.errors.lastName ? 'red' : formik.touched.lastName && !formik.errors.lastName ? 'green' : 'initial',
+                      }}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.lastName}
@@ -251,8 +254,9 @@ const SignUpScreen = () => {
                       type="text"
                       placeholder="Enter Your Phone Number"
                       className="form-elem-control"
-                      hasError={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                      isValid={formik.touched.phoneNumber && !formik.errors.phoneNumber}
+                      style={{
+                        borderColor: formik.touched.phoneNumber && formik.errors.phoneNumber ? 'red' : formik.touched.phoneNumber && !formik.errors.phoneNumber ? 'green' : 'initial',
+                      }}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.phoneNumber}
@@ -273,8 +277,9 @@ const SignUpScreen = () => {
                       type="text"
                       placeholder="Enter Your Address"
                       className="form-elem-control"
-                      hasError={formik.touched.address && formik.errors.address}
-                      isValid={formik.touched.address && !formik.errors.address}
+                      style={{
+                        borderColor: formik.touched.address && formik.errors.address ? 'red' : formik.touched.address && !formik.errors.address ? 'green' : 'initial',
+                      }}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.address}
@@ -295,8 +300,9 @@ const SignUpScreen = () => {
                       type="text"
                       placeholder="Enter Your Zip Code"
                       className="form-elem-control"
-                      hasError={formik.touched.zipCode && formik.errors.zipCode}
-                      isValid={formik.touched.zipCode && !formik.errors.zipCode}
+                      style={{
+                        borderColor: formik.touched.zipCode && formik.errors.zipCode ? 'red' : formik.touched.zipCode && !formik.errors.zipCode ? 'green' : 'initial',
+                      }}
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                       value={formik.values.zipCode}
@@ -307,29 +313,29 @@ const SignUpScreen = () => {
                       </div>
                     )}
                   </div>
+
                   <div className="form-elem-block">
-  <label htmlFor="profileImage" className="forme-elem-label">
-    Profile Image
-  </label>
-  <input
-    id="profileImage"
-    type="file"
-    accept="image/jpeg, image/png"
-    className={`form-elem-control ${
-      formik.touched.profileImage && formik.errors.profileImage
-        ? "error-input"
-        : formik.touched.profileImage && !formik.errors.profileImage
-        ? "success-input"
-        : ""
-    }`}
-    onChange={(event) => {
-      formik.setFieldValue("profileImage", event.currentTarget.files[0]);
-    }}
-  />
-  {formik.touched.profileImage && formik.errors.profileImage ? (
-    <div className="form-elem-error">{formik.errors.profileImage}</div>
-  ) : null}
-</div>
+                    <label htmlFor="profileImage" className="forme-elem-label">
+                      Profile Image
+                    </label>
+                    <input
+                      id="profileImage"
+                      type="file"
+                      accept="image/jpeg, image/png"
+                      className="form-elem-control"
+                      style={{
+                        borderColor: formik.touched.profileImage && formik.errors.profileImage ? 'red' : formik.touched.profileImage && !formik.errors.profileImage ? 'green' : 'initial',
+                      }}
+                      onChange={(event) => {
+                        formik.setFieldValue("profileImage", event.currentTarget.files[0]);
+                      }}
+                    />
+                    {formik.touched.profileImage && formik.errors.profileImage && (
+                      <div className="form-elem-error">
+                        {formik.errors.profileImage}
+                      </div>
+                    )}
+                  </div>
 
                   <div className="form-elem-block">
                     <BaseButtonBlack type="submit" className="full-width">

@@ -7,7 +7,7 @@ const sendRegistrationEmail = require('../utils/sendEmail');
 const crypto = require('crypto');
 
 // Register both User and Customer
-export async function Register(req, res) {
+exports.Register = async function (req, res) {
     const session = await mongoose.startSession(); // Start a session for transaction
     session.startTransaction();
 
@@ -94,7 +94,7 @@ export async function Register(req, res) {
 }
 
 // Email verification handler
-export async function verifyEmail(req, res) {
+exports.verifyEmail = async function (req, res) {
     try {
         const { token } = req.params;
 
@@ -117,7 +117,7 @@ export async function verifyEmail(req, res) {
 }
 
 // Checks if Verified user before sending token
-export async function Login(req, res) {
+exports.Login = async function (req, res) {
     try {
         const { email, password } = req.body;
 
@@ -158,8 +158,8 @@ export async function Login(req, res) {
     }
 }
 
-// Uncommented example: Get user profile function
-// export async function getUserProfile(req, res, next) {
+// // Uncommented example: Get user profile function
+// exports.getUserProfile = async function (req, res, next) {
 //     try {
 //         // Fetch user by ID
 //         const user = await User.findById(req.user.id);
@@ -200,8 +200,8 @@ export async function Login(req, res) {
 //     }
 // }
 
-// Uncommented example: Update User and Customer profile function
-// export async function updateProfile(req, res, next) {
+// // Uncommented example: Update User and Customer profile function
+// exports.updateProfile = async function (req, res, next) {
 //     try {
 //         const { username, email, firstName, lastName, phoneNumber, address, zipCode } = req.body;
 
