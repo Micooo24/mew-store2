@@ -16,7 +16,7 @@ const ButtonGroupWrapper = styled.div`
 `;
 
 const HeaderMainWrapperCustom = styled(HeaderMainWrapper)`
-  background-color: #BDEEEA;/* Applying custom background color */
+  background-color: #EDEEEB;/* Applying custom background color */
 `;
 
 const AuthHeader = () => {

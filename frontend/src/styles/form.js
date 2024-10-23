@@ -17,19 +17,6 @@ export const Input = styled.input`
     }
   }
 
-  /* Dynamic border color based on validation status */
-  border-color: ${({ hasError, isValid }) =>
-    hasError ? '#FF0000' /* Red border for errors */ :
-    isValid ? '#00FF00' /* Green border for valid input */ :
-    defaultTheme.color_platinum /* Default border */};
-
-  /* Focused state styling */
-  &:focus {
-    border-color: ${({ hasError, isValid }) =>
-      hasError ? '#FF0000' : 
-      isValid ? '#00FF00' : 
-      defaultTheme.color_sea_green};
-  }
 `;
 
 

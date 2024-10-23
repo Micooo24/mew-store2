@@ -41,7 +41,7 @@ export const FormGridWrapper = styled.div`
 
   .form-grid-right {
     padding: 48px;
-    background-color: #EAE2D6;
+    background-color: #F5F5F5;
 
     @media (max-width: ${breakpoints.lg}) {
       padding: 24px;
