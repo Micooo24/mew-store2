@@ -14,8 +14,9 @@ import { FormElement, Input } from "../../styles/form";
 import { Link } from "react-router-dom";
 import { BaseButtonBlack } from "../../styles/button";
 import axios from "axios";
-import { toast } from "react-toastify";
 import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from "react-router-dom";
 
 const SignUpScreenWrapper = styled.section`
   form {
@@ -58,6 +59,7 @@ const SignUpScreenWrapper = styled.section`
 `;
 
 const SignUpScreen = () => {
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -121,6 +123,8 @@ const SignUpScreen = () => {
         });
 
         toast.success("Registration successful!");
+        navigate("/sign_in");
+
       } catch (error) {
         toast.error(error.response?.data?.message || "Registration failed");
       }
@@ -129,6 +133,7 @@ const SignUpScreen = () => {
 
   return (
     <SignUpScreenWrapper>
+    
       <FormGridWrapper>
         <Container>
           <div className="form-grid-content">

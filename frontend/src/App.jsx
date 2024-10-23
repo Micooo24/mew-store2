@@ -24,12 +24,12 @@ import WishListEmpty from "./screens/user/WishListEmptyScreen";
 import Confirm from "./screens/user/ConfirmScreen";
 import Account from "./screens/user/AccountScreen";
 import Address from "./screens/user/AddressScreen";
-// import { Toaster } from 'react-hot-toast'; 
+import { Toaster } from 'react-hot-toast'; 
 
 function App() {
   return (
     <>
-     {/* <Toaster position="top-right" /> */}
+     <Toaster position="top-right" />
       <Router>
         
         <GlobalStyles />
@@ -52,6 +52,7 @@ function App() {
           </Route>
 
           {/* auth screens */}
+          
           <Route path="/" element={<AuthLayout />}>
             <Route path="sign_in" element={<SignIn />} />
             <Route path="sign_up" element={<SignUp />} />
