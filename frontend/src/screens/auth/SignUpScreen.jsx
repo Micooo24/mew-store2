@@ -14,7 +14,7 @@ import { FormElement, Input } from "../../styles/form";
 import { Link } from "react-router-dom";
 import { BaseButtonBlack } from "../../styles/button";
 import axios from "axios";
-import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
+import {EyeInvisibleOutlined, EyeTwoTone, CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 
@@ -56,14 +56,34 @@ const SignUpScreenWrapper = styled.section`
     font-size: 100px; /* Adjust the font size here */
     margin-top: 4px;
   }
+
+ .password-toggle-btn {
+  position: absolute;
+  right: 4px; /* Aligns closer to the right edge */
+  top: 6px; /* Aligns closer to the top of the input field */
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #A020F0;
+  font-weight: 500;
+
+  &:hover {
+    color: #000000;
+  }
+}
+
+}
 `;
 
 const SignUpScreen = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
+
+  // Function to toggle password visibility
   const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+    setShowPassword((prevState) => !prevState);
   };
 
   // Yup validation schema
@@ -220,6 +240,18 @@ const SignUpScreen = () => {
                   <div className="form-elem-block">
                     <label htmlFor="password" className="forme-elem-label">
                       Password
+
+                      <button
+                        type="button"
+                        className="password-toggle-btn"
+                        onClick={togglePasswordVisibility}
+                      >
+                         {showPassword ? (
+                              <EyeInvisibleOutlined style={{ fontSize: '15px' }} />
+                            ) : (
+                              <EyeTwoTone style={{ fontSize: '15px' }} />
+                            )}
+                      </button>
                     </label>
                     <div className="input-wrapper">
                       <Input
@@ -239,6 +271,7 @@ const SignUpScreen = () => {
                       ) : formik.touched.password && !formik.errors.password ? (
                         <CheckCircleOutlined className="input-icon" style={{ color: 'green' }} />
                       ) : null}
+                      
                     </div>
                     {formik.touched.password && formik.errors.password && (
                       <div className="form-elem-error">
